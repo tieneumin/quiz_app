@@ -4,11 +4,13 @@ import com.example.quizapp.core.service.AuthService
 import com.example.quizapp.core.service.AuthServiceImpl
 import com.example.quizapp.data.repo.QuizRepo
 import com.example.quizapp.data.repo.QuizRepoFirestoreImpl
+import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
+@Module
 @InstallIn(SingletonComponent::class)
 class AppModule {
     @Provides
