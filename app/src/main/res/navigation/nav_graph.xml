@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/loginFragment">
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.quizapp.ui.auth.login.LoginFragment"
+        tools:layout="@layout/fragment_auth">
+        <!-- popBackstack for these -->
+        <action
+            android:id="@+id/action_login_to_signUp"
+            app:destination="@id/signUpFragment" />
+        <action
+            android:id="@+id/action_login_to_homeTeacher"
+            app:destination="@id/homeTeacherFragment" />
+        <action
+            android:id="@+id/action_login_to_homeStudent"
+            app:destination="@id/homeStudentFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="com.example.quizapp.ui.auth.signUp.SignUpFragment"
+        tools:layout="@layout/fragment_auth" />
+
+    <fragment
+        android:id="@+id/homeTeacherFragment"
+        android:name="com.example.quizapp.ui.home.teacher.HomeTeacherFragment"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeTeacher_to_login"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/homeTeacherFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeStudentFragment"
+        android:name="com.example.quizapp.ui.home.student.HomeStudentFragment"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeStudent_to_login"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/homeStudentFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+</navigation>
