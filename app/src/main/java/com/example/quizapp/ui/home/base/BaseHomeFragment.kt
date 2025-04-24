@@ -33,6 +33,7 @@ abstract class BaseHomeFragment : Fragment() {
                 tab.text = tabTexts[position]
                 tab.icon = ContextCompat.getDrawable(requireContext(), tabIcons[position])
             }.attach()
+
         }
     }
 }

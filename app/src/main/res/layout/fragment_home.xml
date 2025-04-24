@@ -16,15 +16,16 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/blue500" />
+        android:background="@color/purple100" />
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:tabIconTint="@color/blue500"
-        app:tabIndicatorColor="@color/blue500"
+        app:tabIconTint="@color/brown900"
+        android:background="@color/purple100"
+        app:tabIndicatorColor="@color/brown900"
         app:tabIndicatorFullWidth="true"
         app:tabIndicatorHeight="2dp"
-        app:tabTextColor="@color/blue500" />
+        app:tabTextColor="@color/brown900" />
 </LinearLayout>
