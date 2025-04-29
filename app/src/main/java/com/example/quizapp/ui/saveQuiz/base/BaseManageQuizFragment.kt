@@ -4,10 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import com.example.quizapp.databinding.FragmentManageQuizBinding
+import com.example.quizapp.ui.base.BaseFragment
 
-abstract class BaseManageQuizFragment : Fragment() {
+abstract class BaseManageQuizFragment : BaseFragment() {
     protected lateinit var binding: FragmentManageQuizBinding
 
     override fun onCreateView(

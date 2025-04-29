@@ -68,5 +68,10 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    // https://firebase.google.com/docs/auth/android/password-auth
+    implementation(platform("com.google.firebase:firebase-bom:33.13.0"))
+    implementation("com.google.firebase:firebase-auth")
+    // https://github.com/bumptech/glide
+    implementation("com.github.bumptech.glide:glide:4.16.0")
 
 }
