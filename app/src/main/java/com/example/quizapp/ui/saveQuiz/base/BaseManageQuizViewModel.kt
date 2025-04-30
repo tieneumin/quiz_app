@@ -1,6 +1,6 @@
 package com.example.quizapp.ui.saveQuiz.base
 
-import androidx.lifecycle.ViewModel
+import com.example.quizapp.ui.base.BaseViewModel
 
-abstract class BaseManageQuizViewModel : ViewModel() {
+abstract class BaseManageQuizViewModel : BaseViewModel() {
 }

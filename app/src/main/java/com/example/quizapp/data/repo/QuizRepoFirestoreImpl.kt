@@ -1,12 +1,9 @@
 package com.example.quizapp.data.repo
 
-import com.example.quizapp.core.service.AuthService
 import com.example.quizapp.data.model.Quiz
 import kotlinx.coroutines.flow.Flow
 
-class QuizRepoFirestoreImpl(
-    private val authService: AuthService
-) : QuizRepo {
+class QuizRepoFirestoreImpl() : QuizRepo {
     override fun getQuizzes(): Flow<List<Quiz>> {
         TODO("Not yet implemented")
     }

@@ -1,8 +1,13 @@
 package com.example.quizapp.ui.home.base
 
-import androidx.lifecycle.ViewModel
+import com.example.quizapp.core.service.AuthService
+import com.example.quizapp.ui.base.BaseViewModel
 
 // ProfileFragment logic - user name/role updated
 // success State/SharedFlow e.g. quiz deleted/joined
-abstract class BaseHomeViewModel : ViewModel() {
+abstract class BaseHomeViewModel(
+    private val authService: AuthService
+) : BaseViewModel() {
+    fun getUserPhoto() = authService.getUserPhoto()
+    fun logout() = authService.logout()
 }
