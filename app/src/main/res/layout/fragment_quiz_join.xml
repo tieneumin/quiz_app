@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center_vertical"
-    android:padding="@dimen/l"
+    android:padding="@dimen/xl"
     tools:context=".ui.home.student.QuizJoinFragment">
 
     <TextView
@@ -20,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/enter_quiz_id"
-        android:layout_marginVertical="@dimen/m">
+        android:layout_marginVertical="@dimen/l">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"

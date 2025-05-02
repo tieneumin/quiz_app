@@ -8,8 +8,8 @@ import com.example.quizapp.databinding.ItemQuizBinding
 
 class QuizAdapter(
     private var quizzes: List<Quiz>,
-) : RecyclerView.Adapter<QuizAdapter.QuizViewHolder>(){
-    var listener : Listener? = null
+) : RecyclerView.Adapter<QuizAdapter.QuizViewHolder>() {
+    var listener: Listener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): QuizViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -33,20 +33,15 @@ class QuizAdapter(
         private val binding: ItemQuizBinding
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(quiz: Quiz) {
-            binding.run{
+            binding.run {
                 tvTitle.text = quiz.title
                 tvQuizId.text = quiz.quizId.toString()
-                mcvQuiz.setOnClickListener {
-                    listener?.onClickQuiz(quiz.id!!)
-                }
-
+                mcvQuiz.setOnClickListener { listener?.onClickQuiz(quiz.id!!) }
             }
         }
     }
 
     interface Listener {
         fun onClickQuiz(id: String)
-        fun onLongClickQuiz(id: String)
     }
-
 }

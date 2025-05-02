@@ -1,14 +1,13 @@
-package com.example.quizapp.ui.auth.base
+package com.example.quizapp.ui.auth
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import com.example.quizapp.databinding.FragmentAuthBinding
+import com.example.quizapp.ui.base.BaseFragment
 
-// FragmentBinding
-abstract class BaseAuthFragment : Fragment() {
+abstract class BaseAuthFragment : BaseFragment() {
     protected lateinit var binding: FragmentAuthBinding
 
     override fun onCreateView(

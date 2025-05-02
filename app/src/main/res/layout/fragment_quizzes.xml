@@ -11,7 +11,7 @@
         android:id="@+id/rvQuizzes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/s"/>
+        android:layout_margin="@dimen/m"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnAdd"
@@ -20,7 +20,7 @@
         android:backgroundTint="@color/purple100"
         android:src="@drawable/ic_add"
         android:tint="@color/brown900"
-        android:layout_margin="@dimen/l"
+        android:layout_margin="@dimen/xl"
         android:layout_gravity="bottom|end"/>
 
 </FrameLayout>

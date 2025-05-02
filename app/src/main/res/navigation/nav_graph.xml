@@ -4,20 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/homeTeacherFragment">
+
+    <action
+        android:id="@+id/action_to_homeStudent"
+        app:destination="@id/homeStudentFragment"
+        app:popUpTo="@id/loginFragment"
+        app:popUpToInclusive="true" />
+
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.quizapp.ui.auth.login.LoginFragment"
         tools:layout="@layout/fragment_auth">
-        <!-- popBackstack for these -->
         <action
             android:id="@+id/action_login_to_signUp"
             app:destination="@id/signUpFragment" />
         <action
             android:id="@+id/action_login_to_homeTeacher"
-            app:destination="@id/homeTeacherFragment" />
-        <action
-            android:id="@+id/action_login_to_homeStudent"
-            app:destination="@id/homeStudentFragment" />
+            app:destination="@id/homeTeacherFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
@@ -34,9 +39,14 @@
             app:popUpTo="@id/homeTeacherFragment"
             app:popUpToInclusive="true" />
         <action
-            android:id="@+id/action_homeTeacherFragment_to_addQuizFragment"
+            android:id="@+id/action_homeTeacher_to_addQuiz"
             app:destination="@id/addQuizFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/addQuizFragment"
+        android:name="com.example.quizapp.ui.saveQuiz.add.AddQuizFragment"
+        tools:layout="@layout/fragment_manage_quiz" />
+
     <fragment
         android:id="@+id/homeStudentFragment"
         android:name="com.example.quizapp.ui.home.student.HomeStudentFragment"
@@ -47,8 +57,4 @@
             app:popUpTo="@id/homeStudentFragment"
             app:popUpToInclusive="true" />
     </fragment>
-    <fragment
-        android:id="@+id/addQuizFragment"
-        android:name="com.example.quizapp.ui.saveQuiz.create.AddQuizFragment"
-        android:label="AddQuizFragment" />
 </navigation>

@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:gravity="center"
-    android:padding="@dimen/l"
+    android:padding="@dimen/xl"
     tools:context=".ui.saveQuiz.base.BaseManageQuizFragment">
 
     <!-- add/edit quiz share 1 layout -->
@@ -22,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/quiz_name"
-        android:layout_marginVertical="@dimen/xs">
+        android:layout_marginVertical="@dimen/s">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -36,7 +36,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/quiz_id"
-        android:layout_marginVertical="@dimen/xs">
+        android:layout_marginVertical="@dimen/s">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -50,7 +50,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/tpq"
-        android:layout_marginVertical="@dimen/xs">
+        android:layout_marginVertical="@dimen/s">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -63,7 +63,7 @@
         android:id="@+id/btnImport"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="@dimen/xs"
+        android:layout_marginVertical="@dimen/s"
         android:text="@string/import_file"
         app:icon="@drawable/ic_upload"
         app:iconGravity="textStart"
@@ -73,7 +73,7 @@
         android:id="@+id/btnSaveQuiz"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="@dimen/xs"
+        android:layout_marginVertical="@dimen/s"
         android:text="@string/save_quiz"
         android:backgroundTint="@color/black"
         />

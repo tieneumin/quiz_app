@@ -1,6 +1,5 @@
 package com.example.quizapp.ui.home.teacher
 
-import android.content.Intent
 import androidx.lifecycle.viewModelScope
 import com.example.quizapp.core.service.AuthService
 import com.example.quizapp.data.model.Quiz
@@ -17,43 +16,43 @@ import javax.inject.Inject
 // getQuizzes flow, delete
 @HiltViewModel
 class HomeTeacherViewModel @Inject constructor(
-    private val repo: QuizRepo,
-    private val authService: AuthService
-) : BaseHomeViewModel() {
-    private val _state = MutableStateFlow(HomeState())
-    val state = _state.asStateFlow()
-
-    init {
-        getQuizzes()
-    }
-
-    private fun getQuizzes() {
-        try {
-            viewModelScope.launch(Dispatchers.IO) {
-                repo.getQuizzes().collect { quizzes ->
-                    _state.update { it.copy(quizzes = quizzes, isLoading = false) }
-                }
-            }
-        } catch (e: Exception) {
-            _state.update { it.copy(errorMessage = e.message, isLoading = false) }
-        }
-    }
-
-    private fun deleteQuiz(id: String) {
-        try {
-            viewModelScope.launch(Dispatchers.IO) {
-                repo.deleteQuiz(id)
-                _state.update { it.copy(successMessage = "Quiz deleted successfully") }
-            }
-        } catch (e: Exception) {
-            _state.update { it.copy(errorMessage = e.message) }
-        }
-    }
+//    private val repo: QuizRepo,
+    authService: AuthService
+) : BaseHomeViewModel(authService) {
+//    private val _state = MutableStateFlow(HomeState())
+//    val state = _state.asStateFlow()
+//
+//    init {
+//        getQuizzes()
+//    }
+//
+//    private fun getQuizzes() {
+//        try {
+//            viewModelScope.launch(Dispatchers.IO) {
+//                repo.getQuizzes().collect { quizzes ->
+//                    _state.update { it.copy(quizzes = quizzes, isLoading = false) }
+//                }
+//            }
+//        } catch (e: Exception) {
+//            _state.update { it.copy(errorMessage = e.message, isLoading = false) }
+//        }
+//    }
+//
+//    private fun deleteQuiz(id: String) {
+//        try {
+//            viewModelScope.launch(Dispatchers.IO) {
+//                repo.deleteQuiz(id)
+//                _state.update { it.copy(successMessage = "Quiz deleted successfully") }
+//            }
+//        } catch (e: Exception) {
+//            _state.update { it.copy(errorMessage = e.message) }
+//        }
+//    }
 }
 
-data class HomeState(
-    val quizzes: List<Quiz>? = null,
-    val isLoading: Boolean = true,
-    val successMessage: String? = null,
-    val errorMessage: String? = null,
-)
+//data class HomeState(
+//    val quizzes: List<Quiz>? = null,
+//    val isLoading: Boolean = true,
+//    val successMessage: String? = null,
+//    val errorMessage: String? = null,
+//)

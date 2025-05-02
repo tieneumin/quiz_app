@@ -5,6 +5,8 @@ import com.example.quizapp.core.service.AuthServiceImpl
 import com.example.quizapp.data.repo.QuizRepo
 import com.example.quizapp.data.repo.QuizRepoFirestoreImpl
 import dagger.Module
+import com.example.quizapp.data.repo.UserRepo
+import com.example.quizapp.data.repo.UserRepoFirestoreImpl
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
@@ -15,13 +17,19 @@ import javax.inject.Singleton
 class AppModule {
     @Provides
     @Singleton
-    fun provideQuizRepo(authService: AuthService): QuizRepo {
-        return QuizRepoFirestoreImpl(authService = authService)
+    fun provideAuthService(userRepo: UserRepo): AuthService {
+        return AuthServiceImpl(userRepo = userRepo)
     }
 
     @Provides
     @Singleton
-    fun provideAuthService(): AuthService {
-        return AuthServiceImpl()
+    fun provideUserRepo(): UserRepo {
+        return UserRepoFirestoreImpl()
+    }
+
+    @Provides
+    @Singleton
+    fun provideQuizRepo(): QuizRepo {
+        return QuizRepoFirestoreImpl()
     }
 }

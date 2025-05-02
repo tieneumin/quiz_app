@@ -7,13 +7,16 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.quizapp.databinding.FragmentHomeBinding
+import com.example.quizapp.ui.base.BaseFragment
 import com.google.android.material.tabs.TabLayoutMediator
 
-abstract class BaseHomeFragment : Fragment() {
+// TabLayout goes here; pass tabs as params to TabLayout so both HomeStudent/TeacherFragment can use
+abstract class BaseHomeFragment() : BaseFragment() {
     protected lateinit var binding: FragmentHomeBinding
-    abstract val fragments: List<Fragment>
-    abstract val tabTexts: List<String>
-    abstract val tabIcons: List<Int>
+    abstract override val viewModel: BaseHomeViewModel
+    protected abstract val fragments: List<Fragment>
+    protected abstract val tabTexts: List<String>
+    protected abstract val tabIcons: List<Int>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,9 +26,7 @@ abstract class BaseHomeFragment : Fragment() {
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
+    override fun setupUiComponents() {
         binding.run {
             viewPager.adapter = TabAdapter(fragments, this@BaseHomeFragment)
 
@@ -33,7 +34,6 @@ abstract class BaseHomeFragment : Fragment() {
                 tab.text = tabTexts[position]
                 tab.icon = ContextCompat.getDrawable(requireContext(), tabIcons[position])
             }.attach()
-
         }
     }
 }

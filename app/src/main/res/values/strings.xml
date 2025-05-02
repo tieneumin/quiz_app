@@ -2,6 +2,17 @@
     <string name="app_name">QuizApp</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="test">Lorem ipsum</string>
+    <string name="long_test">Lorem ipsum dolor sit amet</string>
+
+    <string name="login">Login</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="log_in_with_google">Log in with Google</string>
+    <string name="logout">Logout</string>
+
     <string name="enter_quiz_id">Enter Quiz Id</string>
     <string name="quiz_id">Quiz Id</string>
     <string name="join">Join</string>
