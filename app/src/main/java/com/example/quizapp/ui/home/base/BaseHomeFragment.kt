@@ -15,6 +15,7 @@ abstract class BaseHomeFragment() : BaseFragment() {
     protected abstract val fragments: List<Fragment>
     protected abstract val tabTexts: List<String>
     protected abstract val tabIcons: List<Int>
+    abstract fun onLogoutNavigate()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
