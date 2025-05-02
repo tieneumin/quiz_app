@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:gravity="center_vertical"
     android:padding="@dimen/xl"
-    tools:context=".ui.home.student.QuizJoinFragment">
+    tools:context=".ui.home.student.JoinQuizFragment">
 
     <TextView
         android:layout_width="wrap_content"

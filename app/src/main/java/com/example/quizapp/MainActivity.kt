@@ -25,8 +25,8 @@ class MainActivity : AppCompatActivity() {
 
         lifecycleScope.launch {
             val startDestination = when (authService.getUserRole()) {
-                "student" -> R.id.homeStudentFragment
-                "teacher" -> R.id.homeTeacherFragment
+                "student" -> R.id.studentHomeFragment
+                "teacher" -> R.id.teacherHomeFragment
                 else -> R.id.loginFragment
             }
             navGraph.setStartDestination(startDestination)

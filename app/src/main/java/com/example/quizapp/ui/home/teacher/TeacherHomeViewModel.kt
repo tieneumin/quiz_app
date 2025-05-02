@@ -1,24 +1,20 @@
 package com.example.quizapp.ui.home.teacher
 
-import androidx.lifecycle.viewModelScope
 import com.example.quizapp.core.service.AuthService
-import com.example.quizapp.data.model.Quiz
 import com.example.quizapp.data.repo.QuizRepo
-import com.example.quizapp.ui.home.base.BaseHomeViewModel
+import com.example.quizapp.ui.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.update
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-// getQuizzes flow, delete
+// handles Quizzes/TeacherProfileFragment logic; getQuizzes<Flow>/deleteQuiz
 @HiltViewModel
-class HomeTeacherViewModel @Inject constructor(
-//    private val repo: QuizRepo,
-    authService: AuthService
-) : BaseHomeViewModel(authService) {
+class TeacherHomeViewModel @Inject constructor(
+    private val repo: QuizRepo,
+    private val authService: AuthService
+) : BaseViewModel() {
+    fun getUserPhoto() = authService.getUserPhoto()
+    fun logout() = authService.logout()
+
 //    private val _state = MutableStateFlow(HomeState())
 //    val state = _state.asStateFlow()
 //

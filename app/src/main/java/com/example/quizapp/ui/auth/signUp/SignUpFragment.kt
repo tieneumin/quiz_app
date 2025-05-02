@@ -34,7 +34,7 @@ class SignUpFragment : BaseAuthFragment() {
         lifecycleScope.launch {
             viewModel.success.collect {
                 findNavController().navigate(
-                    SignUpFragmentDirections.actionToHomeStudent()
+                    SignUpFragmentDirections.actionToStudentHome()
                 )
             }
         }
