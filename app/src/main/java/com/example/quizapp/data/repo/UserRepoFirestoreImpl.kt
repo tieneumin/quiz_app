@@ -16,7 +16,7 @@ class UserRepoFirestoreImpl(
         return snapshot.toObject(User::class.java)
     }
 
-    override suspend fun updateUser(user: User) {
-        TODO("Not yet implemented")
+    override suspend fun updateUser(uid: String, user: User) {
+        db.collection("users").document(uid).set(user.toHashMap()).await()
     }
 }
