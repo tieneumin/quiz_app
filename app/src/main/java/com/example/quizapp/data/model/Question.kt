@@ -1,8 +1,7 @@
 package com.example.quizapp.data.model
 
 data class Question(
-    val id: String? = null,
     val text: String = "",
-    val options: List<String> = emptyList(),
+    val options: List<String> = emptyList(),// 4 options
     val answer: Int = -1,
 )
