@@ -2,12 +2,14 @@ package com.example.quizapp.ui.saveQuiz.add
 
 import android.net.Uri
 import android.os.Bundle
+import android.provider.OpenableColumns
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.quizapp.R
+import com.example.quizapp.core.log
 import com.example.quizapp.data.model.Quiz
 import com.example.quizapp.ui.saveQuiz.base.BaseManageQuizFragment
 import com.google.android.material.snackbar.Snackbar
@@ -20,17 +22,16 @@ import java.io.InputStreamReader
 @AndroidEntryPoint
 class AddQuizFragment : BaseManageQuizFragment() {
     override val viewModel: AddQuizViewModel by viewModels()
-    override val title: String = "Add New Quiz"
-    override val quiz: Quiz? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupUiComponents()
+        setupViewModelObservers()
     }
 
     override fun setupUiComponents() {
         binding.run {
-            tvManageTitle.text = title
+            tvManageTitle.text = "Add New Quiz"
 
             btnSaveQuiz.setOnClickListener {
                 val title = etQuizName.text.toString().trim()
@@ -40,7 +41,7 @@ class AddQuizFragment : BaseManageQuizFragment() {
                 if (quizId == null || secondsPerQuestion == null || title.isBlank()) {
                     return@setOnClickListener
                 }
-                onSaveClicked(title, quizId, secondsPerQuestion)
+                viewModel.saveQuiz(title, quizId, secondsPerQuestion)
             }
 
             btnImport.setOnClickListener {
@@ -52,23 +53,36 @@ class AddQuizFragment : BaseManageQuizFragment() {
     private val csvFilePickerLauncher =
         registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
             if (uri != null) {
+                val fileName = getFileName(uri)
+                if (fileName == null || !fileName.endsWith(".csv", ignoreCase = true)) {
+                    showError("Please select a valid CSV file")
+                    return@registerForActivityResult
+                }
+
                 importQuestionsFromCsvUri(uri)
             } else {
                 showError("No file selected")
             }
         }
 
-    private fun importQuestionsFromCsvUri(uri: Uri) {
-        try {
-            val inputStream = requireContext().contentResolver.openInputStream(uri)
-            val reader = BufferedReader(InputStreamReader(inputStream))
-            val csvReader = CSVReader(reader)
-            val rows = csvReader.readAll()
-            val questions = viewModel.parseQuestionsFromCsv(rows)
-            viewModel.importQuestions(questions)
-        } catch (e: Exception) {
-            showError(e.message.toString())
+    private fun getFileName(uri: Uri): String? {
+        val cursor = requireContext().contentResolver.query(uri, null, null, null, null)
+        cursor?.use {
+            val nameIndex = it.getColumnIndex(OpenableColumns.DISPLAY_NAME)
+            if (it.moveToFirst() && nameIndex != -1) {
+                return it.getString(nameIndex)
+            }
         }
+        return null
+    }
+
+    private fun importQuestionsFromCsvUri(uri: Uri) {
+        val inputStream = requireContext().contentResolver.openInputStream(uri)
+        val reader = BufferedReader(InputStreamReader(inputStream))
+        val csvReader = CSVReader(reader)
+        val rows = csvReader.readAll()
+        val questions = viewModel.parseQuestionsFromCsv(rows)
+        viewModel.importQuestions(questions)
     }
 
     private fun showError(msg: String) {
@@ -87,7 +101,4 @@ class AddQuizFragment : BaseManageQuizFragment() {
         }
     }
 
-    private fun onSaveClicked(title: String, quizId: Int, secondsPerQuestion: Int) {
-        viewModel.saveQuiz(title, quizId, secondsPerQuestion)
-    }
 }

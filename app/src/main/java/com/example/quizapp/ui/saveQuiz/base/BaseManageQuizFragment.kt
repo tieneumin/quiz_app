@@ -10,8 +10,6 @@ import com.example.quizapp.ui.base.BaseFragment
 
 abstract class BaseManageQuizFragment : BaseFragment() {
     protected lateinit var binding: FragmentManageQuizBinding
-    protected abstract val title: String
-    protected abstract val quiz: Quiz?
     abstract override val viewModel: BaseManageQuizViewModel
 
     override fun onCreateView(

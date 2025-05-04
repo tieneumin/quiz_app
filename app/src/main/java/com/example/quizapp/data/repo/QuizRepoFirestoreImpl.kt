@@ -27,7 +27,8 @@ class QuizRepoFirestoreImpl(
     }
 
     override suspend fun updateQuiz(quiz: Quiz) {
-        TODO("Not yet implemented")
+        val docRef = db.collection("quizzes").document(quiz.id!!)
+        docRef.set(quiz).await()
     }
 
     override suspend fun deleteQuiz(id: String) {

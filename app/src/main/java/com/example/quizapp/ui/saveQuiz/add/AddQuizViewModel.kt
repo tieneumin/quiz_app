@@ -57,7 +57,7 @@ class AddQuizViewModel @Inject constructor(
         return questions
     }
 
-    fun saveQuiz(title: String, quizId: Int, secondsPerQuestion: Int) {
+    override fun saveQuiz(title: String, quizId: Int, secondsPerQuestion: Int) {
         viewModelScope.launch {
             errorHandler {
                 val quiz = Quiz(
