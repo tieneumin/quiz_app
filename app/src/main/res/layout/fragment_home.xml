@@ -13,19 +13,14 @@
         android:layout_height="0dp"
         android:layout_weight="1" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/purple100" />
-
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/purple100"
-        app:tabIconTint="@color/brown900"
-        app:tabIndicatorColor="@color/brown900"
+        android:background="@color/purple50"
+        app:tabIconTint="@color/black"
+        app:tabIndicatorColor="@color/black"
         app:tabIndicatorFullWidth="true"
         app:tabIndicatorHeight="2dp"
-        app:tabTextColor="@color/brown900" />
+        app:tabTextColor="@color/black" />
 </LinearLayout>

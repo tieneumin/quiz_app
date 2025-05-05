@@ -15,7 +15,7 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 open class ProfileFragment() : BaseFragment() {
-    protected lateinit var binding: FragmentProfileBinding
+    private lateinit var binding: FragmentProfileBinding
     override val viewModel: BaseHomeViewModel by viewModels({ requireParentFragment() })
 
     override fun onCreateView(

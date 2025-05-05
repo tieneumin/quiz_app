@@ -19,7 +19,7 @@ open class BaseHomeViewModel @Inject constructor(
     protected val userRepo: UserRepo,
     protected val authService: AuthService
 ) : BaseViewModel() {
-    var uid = ""
+    private var uid = ""
     private val _user = MutableStateFlow(User())
     val user = _user.asStateFlow()
 

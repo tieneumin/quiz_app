@@ -41,11 +41,22 @@
         <action
             android:id="@+id/action_teacherHome_to_addQuiz"
             app:destination="@id/addQuizFragment" />
+        <action
+            android:id="@+id/action_teacherHome_to_editQuiz"
+            app:destination="@id/editQuizFragment" />
     </fragment>
     <fragment
         android:id="@+id/addQuizFragment"
         android:name="com.example.quizapp.ui.saveQuiz.add.AddQuizFragment"
         tools:layout="@layout/fragment_manage_quiz" />
+    <fragment
+        android:id="@+id/editQuizFragment"
+        android:name="com.example.quizapp.ui.saveQuiz.edit.EditQuizFragment"
+        tools:layout="@layout/fragment_manage_quiz">
+        <argument
+            android:name="id"
+            app:argType="string" />
+    </fragment>
 
     <fragment
         android:id="@+id/studentHomeFragment"
