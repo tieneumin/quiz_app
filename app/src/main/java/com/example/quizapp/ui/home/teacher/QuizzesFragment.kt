@@ -6,13 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.quizapp.databinding.FragmentQuizzesBinding
-import com.example.quizapp.ui.base.BaseFragment
+import dagger.hilt.android.AndroidEntryPoint
 
-// logic handled by HomeTeacherViewModel
-class QuizzesFragment : Fragment() { // prevents multiple success/error observers
+@AndroidEntryPoint
+class QuizzesFragment : Fragment() { // prevents duplicate success/error observers
     private lateinit var binding: FragmentQuizzesBinding
-    val viewModel: HomeTeacherViewModel by viewModels(ownerProducer = { requireParentFragment() })
+    private lateinit var adapter: QuizAdapter
+    private val viewModel: TeacherHomeViewModel by viewModels({ requireParentFragment() })
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -20,5 +22,25 @@ class QuizzesFragment : Fragment() { // prevents multiple success/error observer
     ): View {
         binding = FragmentQuizzesBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setupAdapter()
+        binding.btnAdd.setOnClickListener {
+            val action = TeacherHomeFragmentDirections.actionTeacherHomeToAddQuiz()
+            findNavController().navigate(action)
+        }
+    }
+
+    private fun setupAdapter() {
+        adapter = QuizAdapter(emptyList())
+        binding.rvQuizzes.adapter = adapter
+        adapter.listener = object : QuizAdapter.Listener {
+            override fun onClickQuiz(id: String) {
+//                val action = TeacherHomeFragmentDirections.actionTeacherHomeToEditQuiz(id)
+//                findNavController().navigate(action)
+            }
+        }
     }
 }

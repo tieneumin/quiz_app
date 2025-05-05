@@ -6,8 +6,8 @@
     app:startDestination="@id/loginFragment">
 
     <action
-        android:id="@+id/action_to_homeStudent"
-        app:destination="@id/homeStudentFragment"
+        android:id="@+id/action_to_studentHome"
+        app:destination="@id/studentHomeFragment"
         app:popUpTo="@id/loginFragment"
         app:popUpToInclusive="true" />
 
@@ -19,8 +19,8 @@
             android:id="@+id/action_login_to_signUp"
             app:destination="@id/signUpFragment" />
         <action
-            android:id="@+id/action_login_to_homeTeacher"
-            app:destination="@id/homeTeacherFragment"
+            android:id="@+id/action_login_to_teacherHome"
+            app:destination="@id/teacherHomeFragment"
             app:popUpTo="@id/loginFragment"
             app:popUpToInclusive="true" />
     </fragment>
@@ -30,23 +30,31 @@
         tools:layout="@layout/fragment_auth" />
 
     <fragment
-        android:id="@+id/homeTeacherFragment"
-        android:name="com.example.quizapp.ui.home.teacher.HomeTeacherFragment"
+        android:id="@+id/teacherHomeFragment"
+        android:name="com.example.quizapp.ui.home.teacher.TeacherHomeFragment"
         tools:layout="@layout/fragment_home">
         <action
-            android:id="@+id/action_homeTeacher_to_login"
+            android:id="@+id/action_teacherHome_to_login"
             app:destination="@id/loginFragment"
-            app:popUpTo="@id/homeTeacherFragment"
+            app:popUpTo="@id/teacherHomeFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_teacherHome_to_addQuiz"
+            app:destination="@id/addQuizFragment" />
     </fragment>
     <fragment
-        android:id="@+id/homeStudentFragment"
-        android:name="com.example.quizapp.ui.home.student.HomeStudentFragment"
+        android:id="@+id/addQuizFragment"
+        android:name="com.example.quizapp.ui.saveQuiz.add.AddQuizFragment"
+        tools:layout="@layout/fragment_manage_quiz" />
+
+    <fragment
+        android:id="@+id/studentHomeFragment"
+        android:name="com.example.quizapp.ui.home.student.StudentHomeFragment"
         tools:layout="@layout/fragment_home">
         <action
-            android:id="@+id/action_homeStudent_to_login"
+            android:id="@+id/action_studentHome_to_login"
             app:destination="@id/loginFragment"
-            app:popUpTo="@id/homeStudentFragment"
+            app:popUpTo="@id/studentHomeFragment"
             app:popUpToInclusive="true" />
     </fragment>
 </navigation>

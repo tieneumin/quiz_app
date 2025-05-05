@@ -1,14 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="@dimen/xl"
+    android:gravity="center"
+    android:orientation="vertical"
     tools:context=".ui.home.base.ProfileFragment">
 
-    <!-- teacher/student profile tab shares 1 layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/edit_profile"
+        android:textSize="22sp"
+        android:textStyle="bold" />
 
-</FrameLayout>
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/l"
+        app:cardCornerRadius="36dp">
+
+        <ImageView
+            android:id="@+id/ivPhoto"
+            style="@style/CircleButton"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:src="@drawable/ic_google" />
+    </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:id="@+id/tvEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/l"
+        android:text="@string/test"
+        android:textSize="18sp" />
+
+    <RadioGroup
+        android:id="@+id/rgRole"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/m"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rbStudent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/student" />
+
+        <RadioButton
+            android:id="@+id/rbTeacher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/l"
+            android:text="@string/teacher" />
+    </RadioGroup>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnUpdate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/m"
+        android:backgroundTint="@color/black"
+        android:text="@string/update"
+        android:textColor="@color/white" />
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chipLogout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/m"
+        android:text="@string/logout"
+        app:chipIcon="@drawable/ic_logout" />
+</LinearLayout>

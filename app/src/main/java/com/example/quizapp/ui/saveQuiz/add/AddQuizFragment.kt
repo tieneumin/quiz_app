@@ -1,4 +1,4 @@
-package com.example.quizapp.ui.saveQuiz.create
+package com.example.quizapp.ui.saveQuiz.add
 
 import androidx.fragment.app.viewModels
 import com.example.quizapp.ui.saveQuiz.base.BaseManageQuizFragment

@@ -38,8 +38,8 @@ class LoginFragment : BaseAuthFragment() {
             viewModel.success.collect {
                 viewModel.getUserRole().let { role ->
                     val action = when (role) {
-                        "student" -> LoginFragmentDirections.actionToHomeStudent()
-                        "teacher" -> LoginFragmentDirections.actionLoginToHomeTeacher()
+                        "student" -> LoginFragmentDirections.actionToStudentHome()
+                        "teacher" -> LoginFragmentDirections.actionLoginToTeacherHome()
                         else -> LoginFragmentDirections.actionLoginToSignUp()
                     }
                     findNavController().navigate(action)

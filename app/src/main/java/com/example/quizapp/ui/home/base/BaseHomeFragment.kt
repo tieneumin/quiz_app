@@ -4,14 +4,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.bumptech.glide.Glide
+import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import com.example.quizapp.databinding.FragmentHomeBinding
 import com.example.quizapp.ui.base.BaseFragment
+import com.google.android.material.tabs.TabLayoutMediator
 
-// TabLayout goes here; pass tabs as params to TabLayout so both HomeStudent/TeacherFragment can use
 abstract class BaseHomeFragment() : BaseFragment() {
     protected lateinit var binding: FragmentHomeBinding
-    abstract override val viewModel: BaseHomeViewModel
+    protected abstract val fragments: List<Fragment>
+    protected abstract val tabTexts: List<String>
+    protected abstract val tabIcons: List<Int>
+    abstract fun onLogoutNavigate()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,13 +27,12 @@ abstract class BaseHomeFragment() : BaseFragment() {
 
     override fun setupUiComponents() {
         binding.run {
-            Glide.with(ivPhoto).load(viewModel.getUserPhoto()).into(ivPhoto)
-            btnLogout.setOnClickListener {
-                viewModel.logout()
-                navigateLogout()
-            }
+            viewPager.adapter = TabAdapter(fragments, this@BaseHomeFragment)
+
+            TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+                tab.text = tabTexts[position]
+                tab.icon = ContextCompat.getDrawable(requireContext(), tabIcons[position])
+            }.attach()
         }
     }
-
-    abstract fun navigateLogout()
 }

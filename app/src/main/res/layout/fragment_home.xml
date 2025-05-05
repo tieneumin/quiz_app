@@ -1,27 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.home.student.HomeStudentFragment">
+    android:orientation="vertical"
+    tools:context=".ui.home.student.StudentHomeFragment">
 
-    <!-- teacher/student home (just ViewPager/TabLayout) shares 1 layout -->
-    <TextView
-        android:layout_width="wrap_content"
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/purple100" />
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Home" />
-
-    <ImageView
-        android:id="@+id/ivPhoto"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_gravity="top|center"
-        android:src="@drawable/ic_google" />
-
-    <Button
-        android:id="@+id/btnLogout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:text="@string/logout" />
-</FrameLayout>
+        android:background="@color/purple100"
+        app:tabIconTint="@color/brown900"
+        app:tabIndicatorColor="@color/brown900"
+        app:tabIndicatorFullWidth="true"
+        app:tabIndicatorHeight="2dp"
+        app:tabTextColor="@color/brown900" />
+</LinearLayout>

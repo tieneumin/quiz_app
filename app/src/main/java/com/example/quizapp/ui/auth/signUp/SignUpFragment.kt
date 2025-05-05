@@ -6,7 +6,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.quizapp.R
 import com.example.quizapp.ui.auth.BaseAuthFragment
-import com.example.quizapp.ui.auth.login.LoginFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -35,7 +34,7 @@ class SignUpFragment : BaseAuthFragment() {
         lifecycleScope.launch {
             viewModel.success.collect {
                 findNavController().navigate(
-                    SignUpFragmentDirections.actionToHomeStudent()
+                    SignUpFragmentDirections.actionToStudentHome()
                 )
             }
         }

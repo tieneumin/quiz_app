@@ -4,9 +4,9 @@ import com.example.quizapp.core.service.AuthService
 import com.example.quizapp.core.service.AuthServiceImpl
 import com.example.quizapp.data.repo.QuizRepo
 import com.example.quizapp.data.repo.QuizRepoFirestoreImpl
+import dagger.Module
 import com.example.quizapp.data.repo.UserRepo
 import com.example.quizapp.data.repo.UserRepoFirestoreImpl
-import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
