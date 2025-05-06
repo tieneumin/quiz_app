@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/mcvQuiz"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -9,23 +10,36 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/m"
-        android:orientation="vertical">
+        android:gravity="center"
+        android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/tvTitle"
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvTitleAndId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/test"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tvQuestionCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/s"
+                android:text="@string/test"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/ivDelete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/m"
-            android:text="Title"
-            android:textColor="@color/black"
-            android:textSize="22sp" />
-
-        <TextView
-            android:id="@+id/tvQuizId"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="123456"
-            android:textColor="@color/black"
-            android:textSize="14sp" />
+            android:src="@drawable/ic_delete"
+            app:tint="@color/red500" />
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

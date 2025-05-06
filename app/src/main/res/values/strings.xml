@@ -5,27 +5,31 @@
     <string name="test">Lorem ipsum</string>
     <string name="long_test">Lorem ipsum dolor sit amet</string>
 
+    <string name="login">Login</string>
+    <string name="sign_up">Sign Up</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="confirm_password">Confirm password</string>
-    <string name="sign_up">Sign Up</string>
-    <string name="login">Login</string>
     <string name="log_in_with_google">Log in with Google</string>
-    <string name="logout">Logout</string>
 
-    <string name="enter_quiz_id">Enter Quiz ID</string>
-    <string name="quiz_id">Quiz ID</string>
+    <string name="title_and_id">%1$s (ID: %2$i)</string>
+    <string name="question_count">%1$i questions</string>
+    <string name="join_quiz">Join Quiz</string>
+    <string name="enter_quiz_id">Enter quiz ID</string>
     <string name="join">Join</string>
     <string name="edit_profile">Edit Profile</string>
     <string name="student">Student</string>
     <string name="teacher">Teacher</string>
     <string name="update">Update</string>
+    <string name="logout">Logout</string>
 
     <string name="add_quiz">Add Quiz</string>
     <string name="edit_quiz">Edit Quiz</string>
-    <string name="quiz_name">Quiz Name</string>
-    <string name="tpq">Time per question (s)</string>
-    <string name="import_file">Import questions (.csv)</string>
-    <string name="save_quiz">Save Quiz</string>
+    <string name="quiz_title">Quiz title</string>
+    <string name="quiz_id">Quiz ID</string>
+    <string name="time_per_question">Time per question (s)</string>
+    <string name="import_questions">Import questions (.csv)</string>
+    <string name="save">Save</string>
+
     <string name="back">Back</string>
 </resources>
