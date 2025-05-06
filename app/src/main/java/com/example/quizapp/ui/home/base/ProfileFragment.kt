@@ -16,7 +16,7 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 open class ProfileFragment() : BaseFragment() {
     private lateinit var binding: FragmentProfileBinding
-    override val viewModel: BaseHomeViewModel by viewModels({ requireParentFragment() })
+    override val viewModel: ProfileViewModel by viewModels({ requireParentFragment() })
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,7 +50,7 @@ open class ProfileFragment() : BaseFragment() {
             }
         }
         lifecycleScope.launch {
-            viewModel.success.collect {
+            viewModel.logout.collect {
                 (parentFragment as? BaseHomeFragment)?.onLogoutNavigate()
             }
         }

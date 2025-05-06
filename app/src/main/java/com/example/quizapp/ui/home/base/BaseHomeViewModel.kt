@@ -6,22 +6,24 @@ import com.example.quizapp.core.service.AuthService
 import com.example.quizapp.data.model.User
 import com.example.quizapp.data.repo.UserRepo
 import com.example.quizapp.ui.base.BaseViewModel
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-@HiltViewModel
-open class BaseHomeViewModel @Inject constructor(
+abstract class BaseHomeViewModel(
     protected val userRepo: UserRepo,
     protected val authService: AuthService
 ) : BaseViewModel() {
     private var uid = ""
     private val _user = MutableStateFlow(User())
     val user = _user.asStateFlow()
+
+    private val _logout = MutableSharedFlow<Unit>()
+    val logout = _logout.asSharedFlow()
 
     init {
         getUserById()
@@ -49,6 +51,7 @@ open class BaseHomeViewModel @Inject constructor(
                     userRepo.updateUser(uid, user.value.copy(role = role))
                     _success.emit("Role updated; please log in again")
                     logout()
+                    _logout.emit(Unit)
                 }
             }
         }
