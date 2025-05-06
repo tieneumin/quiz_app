@@ -15,19 +15,17 @@
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="22sp"
-            android:textColor="@color/black"
+            android:layout_marginBottom="@dimen/m"
             android:text="Title"
-            android:layout_marginBottom="@dimen/m"/>
+            android:textColor="@color/black"
+            android:textSize="22sp" />
 
         <TextView
             android:id="@+id/tvQuizId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="14sp"
+            android:text="123456"
             android:textColor="@color/black"
-            android:text="123456"/>
-
+            android:textSize="14sp" />
     </LinearLayout>
-
 </com.google.android.material.card.MaterialCardView>
