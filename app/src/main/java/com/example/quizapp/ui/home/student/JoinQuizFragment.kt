@@ -7,12 +7,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.quizapp.databinding.FragmentJoinQuizBinding
+import com.example.quizapp.ui.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class JoinQuizFragment : Fragment() { // prevents duplicate success/error observers
+class JoinQuizFragment : BaseFragment() {
     private lateinit var binding: FragmentJoinQuizBinding
-    private val viewModel: StudentHomeViewModel by viewModels({ requireParentFragment() })
+    override val viewModel: StudentHomeViewModel by viewModels({ requireParentFragment() })
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

@@ -10,6 +10,7 @@
     tools:context=".ui.saveQuiz.base.BaseManageQuizFragment">
 
     <TextView
+        android:id="@+id/tvManage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/test"
@@ -23,7 +24,7 @@
         android:hint="@string/quiz_title">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etQuizName"
+            android:id="@+id/etTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -32,30 +33,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginVertical="@dimen/m"
-        android:hint="@string/quiz_id">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etQuizId"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:hint="@string/time_per_question">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etTPQ"
+            android:id="@+id/etTime"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:inputType="number" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnImport"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="@dimen/m"
         android:text="@string/import_questions"
         app:icon="@drawable/ic_upload"
         app:iconGravity="textStart" />
@@ -64,6 +54,8 @@
         android:id="@+id/btnSave"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/m"
         android:backgroundTint="@color/black"
-        android:text="@string/save" />
+        android:text="@string/save"
+        android:textColor="@color/white" />
 </LinearLayout>

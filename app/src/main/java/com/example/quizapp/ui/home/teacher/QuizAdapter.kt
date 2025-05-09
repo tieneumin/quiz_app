@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quizapp.R
+import com.example.quizapp.core.crop
 import com.example.quizapp.data.model.Quiz
 import com.example.quizapp.databinding.ItemQuizBinding
 
@@ -34,11 +35,10 @@ class QuizAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(quiz: Quiz) {
             binding.run {
-                tvTitleAndId.text = itemView.context.getString(
-                    R.string.title_and_id, quiz.title, quiz.quizId
-                )
+                tvTitle.text = quiz.title.crop(42)
+                tvId.text = itemView.context.getString(R.string.quiz_id, quiz.id)
                 tvQuestionCount.text = itemView.context.getString(
-                    R.string.question_count, quiz.questions.size
+                    R.string.question_count, quiz.questions.size.toString()
                 )
                 mcvQuiz.setOnClickListener { listener?.onClickQuiz(quiz.id!!) }
                 ivDelete.setOnClickListener { listener?.onClickDelete(quiz.id!!) }

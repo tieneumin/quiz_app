@@ -5,9 +5,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.quizapp.databinding.FragmentQuizzesBinding
 import com.example.quizapp.ui.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -40,6 +42,7 @@ class QuizzesFragment : BaseFragment() {
         lifecycleScope.launch {
             viewModel.quizzes.collect {
                 adapter.setQuizzes(it)
+                binding.tvEmpty.isVisible = it.isEmpty()
             }
         }
     }
@@ -47,6 +50,7 @@ class QuizzesFragment : BaseFragment() {
     private fun setupAdapter() {
         adapter = QuizAdapter(emptyList())
         binding.rvQuizzes.adapter = adapter
+        binding.rvQuizzes.layoutManager = LinearLayoutManager(requireContext())
         adapter.listener = object : QuizAdapter.Listener {
             override fun onClickQuiz(id: String) {
                 val action = TeacherHomeFragmentDirections.actionTeacherHomeToEditQuiz(id)
@@ -59,13 +63,13 @@ class QuizzesFragment : BaseFragment() {
         }
     }
 
-    private fun showDeleteQuizDialog(deleteQuiz: () -> Unit) {
+    private fun showDeleteQuizDialog(deleteMethod: () -> Unit) {
         AlertDialog.Builder(context)
             .setTitle("Delete quiz?")
             .setMessage("This action cannot be undone.")
             .setNegativeButton("Cancel") { dialog, _ -> dialog.dismiss() }
             .setPositiveButton("Delete") { dialog, _ ->
-                deleteQuiz()
+                deleteMethod()
                 dialog.dismiss()
             }.show()
     }

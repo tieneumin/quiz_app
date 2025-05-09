@@ -1,16 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.home.teacher.QuizzesFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvQuizzes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/m" />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvQuizzes"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/s" />
+
+        <TextView
+            android:id="@+id/tvEmpty"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/no_quizzes_added"
+            android:textSize="18sp"
+            android:textStyle="italic" />
+    </FrameLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnAdd"
@@ -20,5 +34,6 @@
         android:layout_margin="@dimen/xl"
         android:backgroundTint="@color/purple50"
         android:src="@drawable/ic_add"
+        app:shapeAppearanceOverlay="@style/CircleButton"
         app:tint="@color/black" />
-</FrameLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
