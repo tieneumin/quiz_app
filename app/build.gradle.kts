@@ -74,7 +74,4 @@ dependencies {
     // https://github.com/bumptech/glide
     implementation("com.github.bumptech.glide:glide:4.16.0")
 
-
-    implementation("com.opencsv:opencsv:5.6")
-
 }
