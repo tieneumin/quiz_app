@@ -31,7 +31,6 @@ class EditQuizViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             errorHandler { repo.getQuizById(id) }?.let { quiz ->
                 _quiz.update { quiz }
-                log(quiz.toString())
             }
         }
     }

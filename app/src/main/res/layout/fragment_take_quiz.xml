@@ -10,7 +10,7 @@
     tools:context=".ui.takeQuiz.TakeQuizFragment">
 
     <TextView
-        android:id="@+id/timer"
+        android:id="@+id/tvTimer"
         android:textStyle="bold"
         android:textSize="18sp"
         android:layout_width="wrap_content"

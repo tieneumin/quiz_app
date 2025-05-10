@@ -1,21 +1,29 @@
 package com.example.quizapp.ui.takeQuiz
 
+import androidx.fragment.app.viewModels
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
+import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.example.quizapp.core.log
 import com.example.quizapp.data.model.Quiz
 import com.example.quizapp.databinding.FragmentTakeQuizBinding
 import com.example.quizapp.ui.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class TakeQuizFragment : BaseFragment() {
     private lateinit var binding: FragmentTakeQuizBinding
     override val viewModel: TakeQuizViewModel by viewModels()
+    private var index: Int = 0
+    private var score: Int = 0
+    private var countdownTimer: CountDownTimer? = null
+    private var timerValue: Long = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,70 +33,82 @@ class TakeQuizFragment : BaseFragment() {
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        setupUiComponents()
-    }
-
     override fun setupUiComponents() {
-        lifecycleScope.launchWhenStarted {
-            viewModel.currentIndex.collect {
-                viewModel.quiz.value?.let { quiz ->
-                    updateUIForQuestionOrResult(quiz)
+        lifecycleScope.launch {
+            viewModel.quiz.collect { quiz ->
+                if (quiz.questions.isEmpty()) {
+                    binding.mcvQuestion.visibility = View.GONE
+                    binding.tvTimer.text = "Questions Not Found"
+                    return@collect
+                }
+                if (index < quiz.questions.size) {
+                    val question = quiz.questions[index]
+
+                    binding.llQuestion.visibility = View.VISIBLE
+                    binding.llResult.visibility = View.GONE
+                    binding.tvQuestion.text = question.questionText
+                    binding.rbOption0.text = question.options[0]
+                    binding.rbOption1.text = question.options[1]
+                    binding.rbOption2.text = question.options[2]
+                    binding.rbOption3.text = question.options[3]
+
+                    timerValue = quiz.secondsPerQuestion * 1000L
+                    startTimer(timerValue)
+
+                    binding.rgOptions.setOnCheckedChangeListener(null)
+                    binding.rgOptions.clearCheck()
+
+                    binding.rgOptions.setOnCheckedChangeListener { _, checkedId ->
+                        val selectedIndex = when (checkedId) {
+                            binding.rbOption0.id -> 0
+                            binding.rbOption1.id -> 1
+                            binding.rbOption2.id -> 2
+                            binding.rbOption3.id -> 3
+                            else -> return@setOnCheckedChangeListener
+                        }
+
+                        if (selectedIndex == question.answerIndex) {
+                            score++
+                        }
+
+                        index++
+                        if (index >= quiz.questions.size) {
+                            showResult(quiz)
+                        }else{
+                            setupUiComponents()
+                        }
+                    }
                 }
             }
         }
     }
 
-    private fun updateUIForQuestionOrResult(quiz: Quiz) {
-        val index = viewModel.currentIndex.value
-        if (index < quiz.questions.size) {
-            updateUIForQuestion(quiz, index)
-        } else {
-            showResult(quiz)
-        }
-    }
-
-    private fun updateUIForQuestion(quiz: Quiz, index: Int) {
-        val question = quiz.questions[index]
-
-        binding.llQuestion.visibility = View.VISIBLE
-        binding.llResult.visibility = View.GONE
-
-        binding.tvQuestion.text = question.questionText
-        binding.rbOption0.text = question.options[0]
-        binding.rbOption1.text = question.options[1]
-        binding.rbOption2.text = question.options[2]
-        binding.rbOption3.text = question.options[3]
-
-        binding.rgOptions.setOnCheckedChangeListener(null)
-        binding.rgOptions.clearCheck()
-
-        binding.rgOptions.setOnCheckedChangeListener { _, checkedId ->
-            val selectedIndex = when (checkedId) {
-                binding.rbOption0.id -> 0
-                binding.rbOption1.id -> 1
-                binding.rbOption2.id -> 2
-                binding.rbOption3.id -> 3
-                else -> return@setOnCheckedChangeListener
+    private fun startTimer(timeInMillis: Long) {
+        countdownTimer?.cancel()
+        countdownTimer = object : CountDownTimer(timeInMillis, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+                val secondsRemaining = millisUntilFinished / 1000
+                binding.tvTimer.text = "Time remaining: $secondsRemaining sec"
             }
-            viewModel.submitAnswer(selectedIndex)
+
+            override fun onFinish() {
+                index++
+                lifecycleScope.launch {
+                    viewModel.quiz.collect { quiz ->
+                        if (index >= quiz.questions.size) {
+                            showResult(quiz)
+                        }
+                    }
+                }
+            }
         }
+        countdownTimer?.start()
     }
 
     private fun showResult(quiz: Quiz) {
-        val currentAnswers = viewModel.userAnswers.value
-        var correctCount = 0
-        quiz.questions.take(currentAnswers.size).forEachIndexed { i, question ->
-            if (question.answerIndex == currentAnswers[i]) {
-                correctCount++
-            }
-        }
-
+        binding.tvTimer.visibility = View.GONE
         binding.llQuestion.visibility = View.GONE
         binding.llResult.visibility = View.VISIBLE
-        binding.tvScore.text = "Your score: $correctCount / ${quiz.questions.size}"
-
-        log("Final Score: $correctCount / ${quiz.questions.size}")
+        binding.tvScore.text = "Your score: $score / ${quiz.questions.size}"
     }
 }
