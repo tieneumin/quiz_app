@@ -23,6 +23,9 @@
             app:destination="@id/teacherHomeFragment"
             app:popUpTo="@id/loginFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_loginFragment_to_studentHomeFragment"
+            app:destination="@id/studentHomeFragment" />
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
@@ -67,5 +70,19 @@
             app:destination="@id/loginFragment"
             app:popUpTo="@id/studentHomeFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_studentHomeFragment_to_takeQuizFragment"
+            app:destination="@id/takeQuizFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/takeQuizFragment"
+        android:name="com.example.quizapp.ui.takeQuiz.TakeQuizFragment"
+        android:label="fragment_take_quiz"
+        tools:layout="@layout/fragment_take_quiz">
+
+        <argument android:name="id" app:nullable="false"/>
+
+    </fragment>
+
 </navigation>
