@@ -5,7 +5,9 @@ import android.view.View
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.example.quizapp.R
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
@@ -21,9 +23,11 @@ abstract class BaseFragment : Fragment() {
 
     protected open fun setupUiComponents() {}
     protected open fun setupViewModelObservers() {
-        lifecycleScope.launch {
-            viewModel.success.collect {
-                showToast(it)
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.success.collect {
+                    showToast(it)
+                }
             }
         }
         lifecycleScope.launch {
@@ -37,7 +41,7 @@ abstract class BaseFragment : Fragment() {
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }
 
-    private fun showErrorSnackbar(message: String) {
+    protected fun showErrorSnackbar(message: String) {
         Snackbar.make(requireView(), message, Snackbar.LENGTH_SHORT)
             .setBackgroundTint(ContextCompat.getColor(requireContext(), R.color.error))
             .setTextColor(ContextCompat.getColor(requireContext(), R.color.white))

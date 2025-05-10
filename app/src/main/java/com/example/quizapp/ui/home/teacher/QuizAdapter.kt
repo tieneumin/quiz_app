@@ -3,6 +3,8 @@ package com.example.quizapp.ui.home.teacher
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.quizapp.R
+import com.example.quizapp.core.crop
 import com.example.quizapp.data.model.Quiz
 import com.example.quizapp.databinding.ItemQuizBinding
 
@@ -17,12 +19,11 @@ class QuizAdapter(
         return QuizViewHolder(binding)
     }
 
+    override fun getItemCount() = quizzes.size
     override fun onBindViewHolder(holder: QuizViewHolder, position: Int) {
         val quiz = quizzes[position]
         holder.bind(quiz)
     }
-
-    override fun getItemCount() = quizzes.size
 
     fun setQuizzes(quizzes: List<Quiz>) {
         this.quizzes = quizzes
@@ -34,14 +35,19 @@ class QuizAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(quiz: Quiz) {
             binding.run {
-                tvTitle.text = quiz.title
-                tvQuizId.text = quiz.quizId.toString()
+                tvTitle.text = quiz.title.crop(42)
+                tvId.text = itemView.context.getString(R.string.quiz_id, quiz.id)
+                tvQuestionCount.text = itemView.context.getString(
+                    R.string.question_count, quiz.questions.size.toString()
+                )
                 mcvQuiz.setOnClickListener { listener?.onClickQuiz(quiz.id!!) }
+                ivDelete.setOnClickListener { listener?.onClickDelete(quiz.id!!) }
             }
         }
     }
 
     interface Listener {
         fun onClickQuiz(id: String)
+        fun onClickDelete(id: String)
     }
 }

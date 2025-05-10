@@ -19,7 +19,7 @@
     <com.google.android.material.card.MaterialCardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/l"
+        android:layout_marginVertical="@dimen/l"
         app:cardCornerRadius="36dp">
 
         <ImageView
@@ -34,7 +34,6 @@
         android:id="@+id/tvEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/l"
         android:text="@string/test"
         android:textSize="18sp" />
 

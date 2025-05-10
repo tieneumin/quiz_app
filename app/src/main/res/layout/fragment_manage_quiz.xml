@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="@dimen/xl"
     android:gravity="center"
     android:orientation="vertical"
-    android:padding="@dimen/xl"
     tools:context=".ui.saveQuiz.base.BaseManageQuizFragment">
 
-    <!-- add/edit quiz share 1 layout -->
     <TextView
+        android:id="@+id/tvManage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/test"
@@ -18,61 +18,44 @@
         android:textStyle="bold" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/etQuizName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="@dimen/s"
-        android:hint="@string/quiz_name">
+        android:layout_marginTop="@dimen/l"
+        android:hint="@string/quiz_title">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etTitle"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text" />
-
+            android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/etQuizId"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="@dimen/s"
-        android:hint="@string/quiz_id">
+        android:layout_marginVertical="@dimen/m"
+        android:hint="@string/time_per_question">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etTime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/etTpq"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="@dimen/s"
-        android:hint="@string/tpq">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text" />
-
+            android:inputType="number" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnImport"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="@dimen/s"
-        android:text="@string/import_file"
+        android:text="@string/import_questions"
         app:icon="@drawable/ic_upload"
         app:iconGravity="textStart" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnSaveQuiz"
+        android:id="@+id/btnSave"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="@dimen/s"
+        android:layout_marginTop="@dimen/m"
         android:backgroundTint="@color/black"
-        android:text="@string/save_quiz" />
+        android:text="@string/save"
+        android:textColor="@color/white" />
 </LinearLayout>
