@@ -13,7 +13,6 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-// handles Quizzes/TeacherProfileFragment logic; getQuizzes<Flow>/deleteQuiz
 @HiltViewModel
 class TeacherHomeViewModel @Inject constructor(
     private val repo: QuizRepo,
