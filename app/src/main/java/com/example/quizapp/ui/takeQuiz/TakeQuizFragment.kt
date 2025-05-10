@@ -1,17 +1,16 @@
 package com.example.quizapp.ui.takeQuiz
 
-import androidx.fragment.app.viewModels
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.quizapp.core.log
 import com.example.quizapp.data.model.Quiz
 import com.example.quizapp.databinding.FragmentTakeQuizBinding
 import com.example.quizapp.ui.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class TakeQuizFragment : BaseFragment() {
@@ -56,7 +55,7 @@ class TakeQuizFragment : BaseFragment() {
         binding.llQuestion.visibility = View.VISIBLE
         binding.llResult.visibility = View.GONE
 
-        binding.tvQuestion.text = question.text
+        binding.tvQuestion.text = question.questionText
         binding.rbOption0.text = question.options[0]
         binding.rbOption1.text = question.options[1]
         binding.rbOption2.text = question.options[2]
@@ -81,7 +80,7 @@ class TakeQuizFragment : BaseFragment() {
         val currentAnswers = viewModel.userAnswers.value
         var correctCount = 0
         quiz.questions.take(currentAnswers.size).forEachIndexed { i, question ->
-            if (question.answer == currentAnswers[i]) {
+            if (question.answerIndex == currentAnswers[i]) {
                 correctCount++
             }
         }
