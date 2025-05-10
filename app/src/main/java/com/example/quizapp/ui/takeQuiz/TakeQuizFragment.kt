@@ -39,11 +39,10 @@ class TakeQuizFragment : BaseFragment() {
                 if (quiz.questions.isEmpty()) {
                     binding.mcvQuestion.visibility = View.GONE
                     binding.tvTimer.text = "Questions Not Found"
-                    return@collect
-                }
-                if (index < quiz.questions.size) {
+                } else if (index < quiz.questions.size) {
                     val question = quiz.questions[index]
 
+                    binding.mcvQuestion.visibility = View.VISIBLE
                     binding.llQuestion.visibility = View.VISIBLE
                     binding.llResult.visibility = View.GONE
                     binding.tvQuestion.text = question.questionText
