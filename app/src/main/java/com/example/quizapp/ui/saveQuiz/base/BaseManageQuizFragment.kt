@@ -29,8 +29,8 @@ abstract class BaseManageQuizFragment : BaseFragment() {
         binding.run {
             btnImport.setOnClickListener { csvFilePickerLauncher.launch("*/*") }
             btnSave.setOnClickListener {
-                val title = etTitle.text.toString()
-                val secondsPerQuestion = etTime.text.toString().toIntOrNull()
+                val title = etTitle.text.toString().trim()
+                val secondsPerQuestion = etTime.text.toString().trim().toIntOrNull()
                 viewModel.saveQuiz(title, secondsPerQuestion)
             }
         }
@@ -57,6 +57,7 @@ abstract class BaseManageQuizFragment : BaseFragment() {
             }
         }
 
+    // required as URI format is "content://com.android.providers.downloads.documents/document/msf%3A1000056208"
     private fun getFileNameFromUri(uri: Uri): String? {
         val cursor = requireContext().contentResolver.query(uri, null, null, null, null)
         cursor?.use {

@@ -19,8 +19,8 @@ class LoginFragment : BaseAuthFragment() {
             tilConfirmPass.isVisible = false
             btnAuth.text = getString(R.string.login)
             btnAuth.setOnClickListener {
-                val email = etEmail.text.toString()
-                val pass = etPass.text.toString()
+                val email = etEmail.text.toString().trim()
+                val pass = etPass.text.toString().trim()
                 viewModel.login(email, pass)
             }
             btnGoogle.setOnClickListener { viewModel.loginWithGoogle(requireContext()) }

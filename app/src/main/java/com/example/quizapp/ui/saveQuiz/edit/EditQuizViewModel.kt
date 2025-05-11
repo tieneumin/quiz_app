@@ -2,7 +2,6 @@ package com.example.quizapp.ui.saveQuiz.edit
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
-import com.example.quizapp.core.log
 import com.example.quizapp.data.model.Quiz
 import com.example.quizapp.data.repo.QuizRepo
 import com.example.quizapp.ui.saveQuiz.base.BaseManageQuizViewModel
@@ -31,12 +30,13 @@ class EditQuizViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             errorHandler { repo.getQuizById(id) }?.let { quiz ->
                 _quiz.update { quiz }
+                _questions.update { quiz.questions }
             }
         }
     }
 
     override fun saveQuiz(title: String, secondsPerQuestion: Int?) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             errorHandler {
                 require(title.isNotEmpty() && secondsPerQuestion != null) { "All fields are required" }
                 prepareQuiz(title, secondsPerQuestion).let {
