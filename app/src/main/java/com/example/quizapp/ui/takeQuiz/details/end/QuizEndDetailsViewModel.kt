@@ -16,7 +16,7 @@ class QuizEndDetailsViewModel @Inject constructor(
     repo: QuizRepo,
     args: SavedStateHandle
 ) : BaseTakeQuizViewModel(repo, args) {
-    private val score = args.get<Integer>("score")
+    private val score = args.get<Int>("score")
     private val _rank = MutableStateFlow("")
     val rank = _rank.asStateFlow()
 
