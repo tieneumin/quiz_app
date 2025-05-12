@@ -18,9 +18,9 @@ class SignUpFragment : BaseAuthFragment() {
             tvAuth.text = getString(R.string.sign_up)
             btnAuth.text = getString(R.string.sign_up)
             btnAuth.setOnClickListener {
-                val email = etEmail.text.toString()
-                val pass = etPass.text.toString()
-                val confirmPass = etConfirmPass.text.toString()
+                val email = etEmail.text.toString().trim()
+                val pass = etPass.text.toString().trim()
+                val confirmPass = etConfirmPass.text.toString().trim()
                 viewModel.register(email, pass, confirmPass)
             }
             btnGoogle.isVisible = false

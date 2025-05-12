@@ -6,4 +6,5 @@ data class Quiz(
     val secondsPerQuestion: Int = 30,
     val questions: List<Question> = emptyList(),
     val creator: String = "",
+    val percentScores: List<Float> = emptyList(),
 )

@@ -27,8 +27,7 @@ abstract class BaseManageQuizViewModel(
     fun importQuestionsFromCsv(context: Context, uri: Uri) {
         viewModelScope.launch(Dispatchers.IO) {
             errorHandler {
-                parseQuestionsFromCsv(context, uri)
-            }?.let { parsedQs ->
+                val parsedQs = parseQuestionsFromCsv(context, uri)
                 _questions.update { parsedQs }
                 _success.emit("Imported ${parsedQs.size} questions successfully")
             }
@@ -39,7 +38,7 @@ abstract class BaseManageQuizViewModel(
         context.contentResolver.openInputStream(uri)?.bufferedReader()?.useLines { rows ->
             return rows.drop(1).mapIndexed { i, row ->
                 val columns = row.split(",")
-                if (columns.size != 6) throw Exception("Line ${i + 2} does not have 6 values")
+                if (columns.size != 6) throw Exception("Line ${i + 3} does not have 6 values") // indices manually tested
 
                 val questionText = columns[0].trim()
                 val options = columns.slice(1..4).map { it.trim() }

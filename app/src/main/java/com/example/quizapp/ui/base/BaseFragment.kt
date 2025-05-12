@@ -23,8 +23,8 @@ abstract class BaseFragment : Fragment() {
 
     protected open fun setupUiComponents() {}
     protected open fun setupViewModelObservers() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+        lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.RESUMED) {
                 viewModel.success.collect {
                     showToast(it)
                 }

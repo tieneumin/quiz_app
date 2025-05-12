@@ -55,7 +55,8 @@
         tools:layout="@layout/fragment_manage_quiz">
         <argument
             android:name="id"
-            app:argType="string" />
+            app:argType="string"
+            app:nullable="false" />
     </fragment>
 
     <fragment
@@ -67,5 +68,48 @@
             app:destination="@id/loginFragment"
             app:popUpTo="@id/studentHomeFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_studentHome_to_quizStartDetails"
+            app:destination="@id/quizStartDetailsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/quizStartDetailsFragment"
+        android:name="com.example.quizapp.ui.takeQuiz.details.start.QuizStartDetailsFragment"
+        tools:layout="@layout/fragment_quiz_details">
+        <argument
+            android:name="id"
+            app:argType="string"
+            app:nullable="false" />
+        <action
+            android:id="@+id/action_quizStartDetails_to_quizSession"
+            app:destination="@id/quizSessionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/quizSessionFragment"
+        android:name="com.example.quizapp.ui.takeQuiz.session.QuizSessionFragment"
+        tools:layout="@layout/fragment_quiz_session">
+        <argument
+            android:name="id"
+            app:argType="string"
+            app:nullable="false" />
+        <action
+            android:id="@+id/action_quizSession_to_quizEndDetails"
+            app:destination="@id/quizEndDetailsFragment"
+            app:popUpTo="@id/quizSessionFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/quizEndDetailsFragment"
+        android:name="com.example.quizapp.ui.takeQuiz.details.end.QuizEndDetailsFragment"
+        tools:layout="@layout/fragment_quiz_details">
+        <argument
+            android:name="id"
+            app:argType="string"
+            app:nullable="false" />
+        <argument
+            android:name="score"
+            app:argType="integer"
+            app:nullable="false" />
     </fragment>
 </navigation>

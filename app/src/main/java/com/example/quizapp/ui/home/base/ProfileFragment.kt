@@ -14,7 +14,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-open class ProfileFragment() : BaseFragment() {
+class ProfileFragment() : BaseFragment() {
     private lateinit var binding: FragmentProfileBinding
     override val viewModel: ProfileViewModel by viewModels({ requireParentFragment() })
 

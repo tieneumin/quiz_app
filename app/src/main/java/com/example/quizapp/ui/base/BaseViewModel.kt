@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 
-open class BaseViewModel : ViewModel() {
+abstract class BaseViewModel : ViewModel() {
     protected val _success = MutableSharedFlow<String>()
     val success = _success.asSharedFlow()
 
