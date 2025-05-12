@@ -4,20 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/loginFragment">
+
+    <action
+        android:id="@+id/action_to_studentHome"
+        app:destination="@id/studentHomeFragment"
+        app:popUpTo="@id/loginFragment"
+        app:popUpToInclusive="true" />
+
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.quizapp.ui.auth.login.LoginFragment"
         tools:layout="@layout/fragment_auth">
-        <!-- popBackstack for these -->
         <action
             android:id="@+id/action_login_to_signUp"
             app:destination="@id/signUpFragment" />
         <action
-            android:id="@+id/action_login_to_homeTeacher"
-            app:destination="@id/homeTeacherFragment" />
-        <action
-            android:id="@+id/action_login_to_homeStudent"
-            app:destination="@id/homeStudentFragment" />
+            android:id="@+id/action_login_to_teacherHome"
+            app:destination="@id/teacherHomeFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
@@ -25,23 +30,86 @@
         tools:layout="@layout/fragment_auth" />
 
     <fragment
-        android:id="@+id/homeTeacherFragment"
-        android:name="com.example.quizapp.ui.home.teacher.HomeTeacherFragment"
+        android:id="@+id/teacherHomeFragment"
+        android:name="com.example.quizapp.ui.home.teacher.TeacherHomeFragment"
         tools:layout="@layout/fragment_home">
         <action
-            android:id="@+id/action_homeTeacher_to_login"
+            android:id="@+id/action_teacherHome_to_login"
             app:destination="@id/loginFragment"
-            app:popUpTo="@id/homeTeacherFragment"
+            app:popUpTo="@id/teacherHomeFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_teacherHome_to_addQuiz"
+            app:destination="@id/addQuizFragment" />
+        <action
+            android:id="@+id/action_teacherHome_to_editQuiz"
+            app:destination="@id/editQuizFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addQuizFragment"
+        android:name="com.example.quizapp.ui.saveQuiz.add.AddQuizFragment"
+        tools:layout="@layout/fragment_manage_quiz" />
+    <fragment
+        android:id="@+id/editQuizFragment"
+        android:name="com.example.quizapp.ui.saveQuiz.edit.EditQuizFragment"
+        tools:layout="@layout/fragment_manage_quiz">
+        <argument
+            android:name="id"
+            app:argType="string"
+            app:nullable="false" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/studentHomeFragment"
+        android:name="com.example.quizapp.ui.home.student.StudentHomeFragment"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_studentHome_to_login"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/studentHomeFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_studentHome_to_quizStartDetails"
+            app:destination="@id/quizStartDetailsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/quizStartDetailsFragment"
+        android:name="com.example.quizapp.ui.takeQuiz.details.start.QuizStartDetailsFragment"
+        tools:layout="@layout/fragment_quiz_details">
+        <argument
+            android:name="id"
+            app:argType="string"
+            app:nullable="false" />
+        <action
+            android:id="@+id/action_quizStartDetails_to_quizSession"
+            app:destination="@id/quizSessionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/quizSessionFragment"
+        android:name="com.example.quizapp.ui.takeQuiz.session.QuizSessionFragment"
+        tools:layout="@layout/fragment_quiz_session">
+        <argument
+            android:name="id"
+            app:argType="string"
+            app:nullable="false" />
+        <action
+            android:id="@+id/action_quizSession_to_quizEndDetails"
+            app:destination="@id/quizEndDetailsFragment"
+            app:popUpTo="@id/quizSessionFragment"
             app:popUpToInclusive="true" />
     </fragment>
     <fragment
-        android:id="@+id/homeStudentFragment"
-        android:name="com.example.quizapp.ui.home.student.HomeStudentFragment"
-        tools:layout="@layout/fragment_home">
-        <action
-            android:id="@+id/action_homeStudent_to_login"
-            app:destination="@id/loginFragment"
-            app:popUpTo="@id/homeStudentFragment"
-            app:popUpToInclusive="true" />
+        android:id="@+id/quizEndDetailsFragment"
+        android:name="com.example.quizapp.ui.takeQuiz.details.end.QuizEndDetailsFragment"
+        tools:layout="@layout/fragment_quiz_details">
+        <argument
+            android:name="id"
+            app:argType="string"
+            app:nullable="false" />
+        <argument
+            android:name="score"
+            app:argType="integer"
+            app:nullable="false" />
     </fragment>
 </navigation>

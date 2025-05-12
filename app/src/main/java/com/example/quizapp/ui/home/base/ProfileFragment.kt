@@ -4,12 +4,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
+import com.bumptech.glide.Glide
+import com.example.quizapp.R
 import com.example.quizapp.databinding.FragmentProfileBinding
+import com.example.quizapp.ui.base.BaseFragment
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
-// '.' BaseHomeFragment has TabLayout, BaseHomeViewModel handles ProfileFragment tab's logic
-class ProfileFragment : Fragment() {
+@AndroidEntryPoint
+class ProfileFragment() : BaseFragment() {
     private lateinit var binding: FragmentProfileBinding
+    override val viewModel: ProfileViewModel by viewModels({ requireParentFragment() })
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -17,5 +24,35 @@ class ProfileFragment : Fragment() {
     ): View {
         binding = FragmentProfileBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    override fun setupUiComponents() {
+        binding.run {
+            Glide.with(ivPhoto).load(viewModel.getUserPhoto()).into(ivPhoto)
+            btnUpdate.setOnClickListener {
+                viewModel.updateUser(rgRole.checkedRadioButtonId)
+            }
+            chipLogout.setOnClickListener {
+                viewModel.logout()
+                (parentFragment as? BaseHomeFragment)?.onLogoutNavigate()
+            }
+        }
+    }
+
+    override fun setupViewModelObservers() {
+        super.setupViewModelObservers()
+        lifecycleScope.launch {
+            viewModel.user.collect {
+                binding.tvEmail.text = it.email
+                binding.rgRole.check(
+                    if (it.role == "student") R.id.rbStudent else R.id.rbTeacher
+                )
+            }
+        }
+        lifecycleScope.launch {
+            viewModel.logout.collect {
+                (parentFragment as? BaseHomeFragment)?.onLogoutNavigate()
+            }
+        }
     }
 }
